@@ -1,3 +1,19 @@
+.plyo-header {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fdfdfd;
+  background-color: rgba(0,0,0,.5);
+}
+
+.plyo-header * {
+  margin: 0;
+}
+
+
+
 .pnlm-container {
     margin: 0;
     padding: 0;
@@ -49,7 +65,7 @@
 
 .pnlm-render-container {
     cursor: inherit;
-    
+
     /* Fix display bug in Safari 7 */
     position: absolute;
     height: 100%;
@@ -209,10 +225,10 @@
 
 .pnlm-load-button {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     width: 200px;
-    height: 100px;
+    height: 70px;
     margin: -50px 0 0 -100px;
     background-color: rgba(0,0,0,.7);
     border-radius: 3px;
