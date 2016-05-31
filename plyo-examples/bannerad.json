@@ -1,0 +1,7 @@
+{
+    "panorama": "../../plyo-examples/raatun.jpg",
+    "showZoomCtrl": false,
+    "keyboardZoom": false,
+    "compass": false,
+    "preview": "./preview.jpg"
+}
