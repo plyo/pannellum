@@ -185,17 +185,8 @@ if (document.fullscreenEnabled || document.mozFullScreenEnabled || document.webk
     controls.container.appendChild(controls.fullscreen);
 
 // Device orientation toggle
-controls.orientation = document.createElement('div');
-controls.orientation.addEventListener('click', function(e) {
-    window.addEventListener('deviceorientation', orientationListener);
-});
-controls.orientation.className = 'pnlm-orientation-button pnlm-sprite pnlm-controls pnlm-control';
 if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', function(e) {
-        window.removeEventListener('deviceorientation', this);
-        if (e)
-            controls.container.appendChild(controls.orientation);
-    });
+  window.addEventListener('deviceorientation', orientationListener);
 }
 
 // Compass
@@ -1300,6 +1291,9 @@ function computeQuaternion(alpha, beta, gamma) {
  * @param {DeviceOrientationEvent} event - Device orientation event.
  */
 function orientationListener(e) {
+    // If we do not have necessarydata, cancel
+    if (!(e.alpha || e.beta || e.gamma) ) return;
+    
     var q = computeQuaternion(e.alpha, e.beta, e.gamma).toEulerAngles();
     config.pitch = q[0] / Math.PI * 180;
     config.roll = -q[1] / Math.PI * 180;
