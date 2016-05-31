@@ -1634,13 +1634,13 @@ function processOptions() {
             case 'showFullscreenCtrl':
                 if (config[key] && ('fullscreen' in document || 'mozFullScreen' in document ||
                     'webkitIsFullScreen' in document || 'msFullscreenElement' in document)) {
-                    
-                    // Show fullscreen control
+
+                    // Show fullscreen control on load
+                    config.useFullscreen = true;
                     controls.fullscreen.style.display = 'block';
-                } else {
-                    // Hide fullscreen control
-                    controls.fullscreen.style.display = 'none';
                 }
+                // Hide fullscreen control until load
+                controls.fullscreen.style.display = 'none';
                 break;
         }
       }
@@ -1753,7 +1753,19 @@ function load() {
     // memory etc and not because of a lack of WebGL support etc
     clearError();
 
+    controls.header.style.display = 'none';
     controls.load.style.display = 'none';
+
+    // Only show fullscreen icon if in config
+    if (config.useFullscreen) {
+      controls.fullscreen.style.display = 'block';
+    }
+
+    // Only show compass icon if in config
+    if (config.useDeviceOrientation) {
+      controls.orientation.style.display = 'block';
+    }
+
     infoDisplay.load.box.style.display = 'inline';
     init();
 }
